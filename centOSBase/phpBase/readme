@@ -1,0 +1,8 @@
+Variables de entorno necesarias:
+
+ -- PARA EL USUARIO --
+--> USUARIO
+--> PASSWD
+
+ -- PARA EL TIMEZONE --
+--> TZ

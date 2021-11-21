@@ -12,6 +12,7 @@ COPY ./start.sh /root
 RUN chmod +x /root/start.sh
 
 RUN yum update -y && yum install -y \
+    yum-utils \
     wget \ 
     curl \ 
     git \
@@ -25,5 +26,7 @@ RUN yum update -y && yum install -y \
     dos2unix \ 
     expect \
     python3
+
+RUN dos2unix /root/start.sh 
 
 ENTRYPOINT [ "/root/start.sh" ]

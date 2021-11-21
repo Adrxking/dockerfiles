@@ -1,16 +1,21 @@
 FROM ubuntu
+
 #indicamos el timezone
 ARG TZ=Europe/Madrid
 ENV TZ=${TZ}
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-EXPOSE 22
+# exponer puerto ssh
+#EXPOSE 22
+
+ARG USUARIO
+ARG PASSWD
 
 COPY ./start.sh /root
 
 RUN chmod +x /root/start.sh
 
-RUN apt update && apt install -yq --no-install-recommends \
+RUN apt-get update -y && apt-get install -y \
     apt-utils \
     wget \ 
     curl \ 
@@ -18,7 +23,6 @@ RUN apt update && apt install -yq --no-install-recommends \
     nano \ 
     tree \
     net-tools \ 
-    iputils-ping \
     sudo \ 
     openssh-server \ 
     openssh-client \
@@ -26,5 +30,7 @@ RUN apt update && apt install -yq --no-install-recommends \
     dos2unix \ 
     expect \
     python3
+
+RUN dos2unix /root/start.sh 
 
 ENTRYPOINT [ "/root/start.sh" ]
