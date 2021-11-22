@@ -7,9 +7,15 @@ webPath=/usr/share/html
 
 cd $webPath
 
+npm cache clean --force
+
+npm cache verify
+
+rm -rf ~/.npm
+
 if [ ${NEW} == true ]
  then
-    mkdir app fonts offline partials public shared styles app/animations app/clases app/components \
+    mkdir app fonts offline partials public shared styles views app/animations app/clases app/components \
     app/pages app/shaders app/utils app/images app/videos styles/base styles/components styles/pages \
     styles/shared styles/utils views/pages views/partials
 
@@ -44,21 +50,23 @@ if [ ${NEW} == true ]
     file-loader sass image-minimizer-webpack-plugin \
     imagemin-optipng imagemin-jpegtran imagemin-gifsicle \
     imagemin-svgo glslify-loader raw-loader eslint \
-    eslint-config-standard eslint-loader eslint-plugin-import \
-    eslint-plugin-promise eslint-plugin-standard \
-    terser-webpack-plugin imagemin --save-dev
+    eslint-config-standard eslint-webpack-plugin eslint-plugin-import \
+    eslint-plugin-promise terser-webpack-plugin imagemin \
+    clean-webpack-plugin --save-dev
 
-    mv package.json.new package.json
-    mv webpack.config.js.new webpack.config.js
-    mv webpack.config.build.js.new webpack.config.build.js
-    mv webpack.config.development.js.new webpack.config.development.js
-    mv .editorconfig.new .editorconfig
-    mv .eslintrc.js.new .eslintrc.js
+    mv /root/package.json package.json
+    mv /root/webpack.config.js webpack.config.js
+    mv /root/webpack.config.build.js webpack.config.build.js
+    mv /root/webpack.config.development.js webpack.config.development.js
+    mv /root/.editorconfig .editorconfig
+    mv /root/.eslintrc.js .eslintrc.js
 else
-    rm package.json.new
-    rm webpack.config.js.new
-    rm webpack.config.build.js.new
-    rm webpack.config.development.js.new
+    rm /root/package.json
+    rm /root/webpack.config.js
+    rm /root/webpack.config.build.js
+    rm /root/webpack.config.development.js
+    mv /root/.editorconfig
+    mv /root/.eslintrc.js
 fi
 
 if [ ${DEV} == true ]

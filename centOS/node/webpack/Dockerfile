@@ -1,17 +1,18 @@
 FROM adrxking_centos-node
 
 COPY ./start-webpack.sh /root
-COPY ./package.json /usr/share/html/package.json.new
-COPY ./webpack.config.js /usr/share/html/webpack.config.js.new
-COPY ./webpack.config.build.js /usr/share/html/webpack.config.build.new
-COPY ./webpack.config.development.js /usr/share/html/webpack.config.development.js.new
-COPY ./.eslintrc.js /usr/share/html/.eslintrc.js.new
-COPY ./.editorconfig /usr/share/html/.editorconfig.new
+COPY ./package.json /root/package.json
+COPY ./webpack.config.js /root/webpack.config.js
+COPY ./webpack.config.build.js /root/webpack.config.build.js
+COPY ./webpack.config.development.js /root/webpack.config.development.js
+COPY ./.eslintrc.js /root/.eslintrc.js
+COPY ./.editorconfig /root/.editorconfig
 
 RUN chmod +x /root/start-webpack.sh
 
 RUN dos2unix /root/start-webpack.sh
 
 ARG NEW
+ARG DEV
 
 ENTRYPOINT [ "sh","/root/start-webpack.sh" ]
