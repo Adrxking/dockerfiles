@@ -1,0 +1,14 @@
+Variables de entorno necesarias:
+
+ -- PARA EL USUARIO --
+--> USUARIO
+--> PASSWD
+
+ -- PARA EL TIMEZONE --
+--> TZ
+
+ -- SI ES UNA WEB NUEVA ESPECIFICAR CON TRUE --
+--> NEW
+
+ -- SI ESTAMOS EN DESARROLLO ESPECIFICAR CON TRUE --
+--> DEV
