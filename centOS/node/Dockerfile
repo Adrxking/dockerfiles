@@ -6,7 +6,8 @@ RUN chmod +x /root/start-node.sh
 
 RUN dos2unix /root/start-node.sh 
 
-ARG WEBSERVER
 ARG NEW
+
+RUN yum install nodejs npm -y
 
 ENTRYPOINT [ "/root/start-node.sh" ]
