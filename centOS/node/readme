@@ -9,3 +9,6 @@ Variables de entorno necesarias:
 
  -- SI ES UNA WEB NUEVA ESPECIFICAR CON TRUE --
 --> NEW
+
+ -- SI SOLO VAMOS A UTILIZAR NODE ESPECIFICAR CON TRUE --
+--> JUSTNODE

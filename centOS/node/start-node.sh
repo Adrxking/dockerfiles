@@ -6,10 +6,6 @@ set -e
 
 webPath=/usr/share/html
 
-npm cache clean --force
-
-npm cache verify
-
 init_Npm() {
     mkdir -p webPath
     cd $webPath
@@ -19,4 +15,11 @@ init_Npm() {
 if [ ${NEW} == true ]
  then
     init_Npm
+fi
+
+if [ ${JUSTNODE} == true ]
+ then
+    cd $webPath
+    npm install
+    npm run dev
 fi
