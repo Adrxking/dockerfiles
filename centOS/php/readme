@@ -6,3 +6,6 @@ Variables de entorno necesarias:
 
  -- PARA EL TIMEZONE --
 --> TZ
+
+ -- PATH PARA LAS WEBS --
+--> /www/myapp
