@@ -17,8 +17,10 @@ php -v
 
 webPath=/var/www/html
 
-echo "<?php" > /var/www/html/info.php
-echo "phpinfo();" >> /var/www/html/info.php
-echo "?>" >> /var/www/html/info.php
+echo "<?php" > $webPath/info.php
+echo "phpinfo();" >> $webPath/info.php
+echo "?>" >> $webPath/info.php
+
+exec /usr/sbin/nginx -g "daemon off;"
 
 tail -f /dev/null
