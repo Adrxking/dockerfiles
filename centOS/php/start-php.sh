@@ -4,27 +4,21 @@ bash /root/start.sh
 
 set -e
 
-webPath=/www/myapp
+yum update -y
 
-yum update -y && yum install -y
+dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
-yum install -y \\
-php56 \\
-php-pear \\
-php56-cli \\
-php56-common \\
-php56-fpm \\
-php56-soap \\
-php56-pecl-redis 
+dnf module enable php:remi-8.0 -y
 
-sed -e 's/127.0.0.1:9000/9000/' \\
-    -e '/allowed_clients/d' \\
-    -e '/catch_workers_output/s/^;//' \\
-    -e '/error_log/d' \\
-    -i /etc/php-fpm.d/www.conf 
+dnf install -y php php-cli php-common php-fpm
 
-mkdir -p $webPath
+php -v 
 
-cd $webPath
+webPath=/var/www/html
+
+echo "<?php" > /var/www/html/info.php
+echo "phpinfo();" >> /var/www/html/info.php
+echo "?>" >> /var/www/html/info.php
 
 tail -f /dev/null
