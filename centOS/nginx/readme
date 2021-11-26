@@ -8,4 +8,4 @@ Variables de entorno necesarias:
 --> TZ
 
  -- PATH PARA LAS WEBS --
---> /www/myapp
+--> /var/www/html

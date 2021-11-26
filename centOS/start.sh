@@ -34,8 +34,8 @@ config_ssh(){
 }
 
 main(){
-    config_Timezone
     newUser
+    config_Timezone
     config_Sudoers
 }
 

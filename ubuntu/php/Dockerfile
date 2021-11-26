@@ -10,7 +10,7 @@ EXPOSE 80
 
 RUN apt-get update && apt-get install -y php \
     php-cli \
-    php-fpm \
+    php8.0-fpm \
     php-json \
     php-common \
     php-mysql \
@@ -20,8 +20,6 @@ RUN apt-get update && apt-get install -y php \
     php-curl \
     php-xml \
     php-pear \ 
-    php-bcmath \
-    nginx 
+    php-bcmath
 
 ENTRYPOINT [ "/root/start-php.sh" ]
-CMD ["nginx", "-g", "daemon off;"]
