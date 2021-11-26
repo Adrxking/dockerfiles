@@ -25,7 +25,7 @@ RUN dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 RUN dnf module enable php:remi-8.0 -y
 
 # Instalar php y otros paquetes
-RUN dnf install -y php php-cli php-common php-fpm php-mysqlnd
+RUN dnf install -y php php-cli php-common php-fpm php-mysqlnd php-soap
 
 # Copiar el archivo de configuración de la pool www de php fpm
 COPY ./www.conf /etc/php-fpm.d/www.conf
