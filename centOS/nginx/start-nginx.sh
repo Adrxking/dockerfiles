@@ -2,6 +2,8 @@
 
 bash /root/start.sh
 
+wait
+
 set -e
 
 yum update -y
@@ -14,6 +16,11 @@ fi
 if ! [ -f /var/www/html/custom_404.html ]
  then
     mv /usr/tmp/custom_404.html /var/www/html/custom_404.html
+fi
+
+if ! [ -f /var/www/html/50x.html ]
+ then
+    mv /usr/tmp/50x.html /var/www/html/50x.html
 fi
 
 exec /usr/sbin/nginx -g "daemon off;"

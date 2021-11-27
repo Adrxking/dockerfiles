@@ -4,11 +4,14 @@ bash /root/start.sh
 
 set -e
 
-if ! [ -f /var/www/html/php/index.php ]
+if ! [ -f /var/www/html/index.php ]
  then
-    mv /usr/tmp/index.php /var/www/html/php/index.php
+    mv /usr/tmp/index.php /var/www/html/index.php
 fi
 
-echo "Contenedor PHP Listo"
+echo "Imagen PHP terminada"
 
-php-fpm -F -R
+if ! [ -f /root/start-composer.sh ]
+ then
+    php-fpm -F -R
+fi

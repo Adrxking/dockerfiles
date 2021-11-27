@@ -1,5 +1,9 @@
 FROM adrxking_centos
 
+ARG USUARIO
+ARG PASSWD
+ARG TZ
+
 RUN mkdir -p /var/www/html
 
 # En caso de querer el comando service instalar:
@@ -22,6 +26,7 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 # Copiar el html por defecto y el html en errores 404
 COPY ./custom_404.html /usr/tmp/
+COPY ./50x.html /usr/tmp/
 COPY ./index.html /usr/tmp/
 
 # Dar permisos al script de inicio
