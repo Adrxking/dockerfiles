@@ -3,36 +3,53 @@
 bash /root/start-composer.sh
 
 webPath=/var/www/html
-if ! [ -f /var/www/html/composer.json ]
+
+if [ -f $webPath/custom_404.html ]
+ then
+    mv $webPath/custom_404.html /usr/tmp/custom_404.html
+fi
+
+if [ -f $webPath/50x.html ]
+ then
+    mv $webPath/50x.html /usr/tmp/50x.html
+fi
+
+if ! [ -f $webPath/composer.json ]
  then
     rm -rf $webPath
-    mkdir rm -rf $webPath
-    cd $webPath
+    mkdir $webPath
     composer create-project laravel/laravel .
 fi
 
 composer install
 
-if [ -f /var/www/html/custom_404.html ]
+php artisan key:generate
+php artisan config:cache
+
+if ! [ -f $webPath/public/custom_404.html ]
  then
-    mv /var/www/html/custom_404.html /var/www/html/public/custom_404.html
+    mv /usr/tmp/custom_404.html $webPath/public/custom_404.html
+else
+    rm /usr/tmp/custom_404.html
 fi
 
-if [ -f /var/www/html/50x.html ]
+if ! [ -f $webPath/public/50x.html ]
  then
-    mv /var/www/html/50x.html /var/www/html/public/50x.html
+    mv /usr/tmp/50x.html $webPath/public/50x.html
+else
+    rm /usr/tmp/50x.html
 fi
 
-if [ -d /var/www/html/storage ]
+if [ -d $webPath/storage ]
  then
-    chown -R :nginx /var/www/html/storage
-    chmod -R 777 /var/www/html/storage
+    chown -R :nginx $webPath/storage
+    chmod -R 777 $webPath/storage
 fi
 
-if [ -d /var/www/html/bootstrap/cache ]
+if [ -d $webPath/bootstrap/cache ]
  then
-    chown -R :nginx /var/www/html/bootstrap/cache
-    chmod -R 775 /var/www/html/bootstrap/cache
+    chown -R :nginx $webPath/bootstrap/cache
+    chmod -R 775 $webPath/bootstrap/cache
 fi
 
 echo "Imagen Laravel terminada"
