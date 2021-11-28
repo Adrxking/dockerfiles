@@ -5,9 +5,6 @@ RUN mkdir -p /var/www/html
 # Copiar script de inicio al root
 COPY ./start-php.sh /root
 
-# Copiar el index predeterminado a la carpeta tmp
-COPY ./index.php /usr/tmp
-
 # Dar permisos de ejecución al script de inicio
 RUN chmod +x /root/start-php.sh
 

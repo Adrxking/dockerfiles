@@ -13,6 +13,16 @@ fi
 
 composer install
 
+if [ -f /var/www/html/custom_404.html ]
+ then
+    mv /var/www/html/custom_404.html /var/www/html/public/custom_404.html
+fi
+
+if [ -f /var/www/html/50x.html ]
+ then
+    mv /var/www/html/50x.html /var/www/html/public/50x.html
+fi
+
 if [ -d /var/www/html/storage ]
  then
     chown -R :nginx /var/www/html/storage
