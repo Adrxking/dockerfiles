@@ -2,9 +2,9 @@
 
 bash /root/start.sh
 
-wait
-
 set -e
+
+sed -i "s/fastcgi_pass   container:9000/fastcgi_pass   ${FPM}:9000/" /etc/nginx/conf.d/default.conf
 
 yum update -y
 

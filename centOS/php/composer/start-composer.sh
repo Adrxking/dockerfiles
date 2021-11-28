@@ -13,4 +13,9 @@ php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Insta
 
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-php-fpm -F -R
+chmod +x /usr/local/bin/composer
+
+if ! [ -f /root/laravel.txt ]
+ then
+    php-fpm -F -R
+fi

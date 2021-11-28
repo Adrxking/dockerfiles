@@ -9,4 +9,10 @@ RUN chmod +x /root/start-laravel.sh
 # Convertir a unix el script de inicio
 RUN dos2unix /root/start-laravel.sh
 
+RUN touch /root/laravel.txt
+
+WORKDIR /var/www/html
+
+EXPOSE 9000
+
 ENTRYPOINT [ "/root/start-laravel.sh" ]
