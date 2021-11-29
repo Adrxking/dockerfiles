@@ -16,13 +16,27 @@ fi
 
 if ! [ -f $webPath/composer.json ]
  then
-    rm -rf $webPath
-    mkdir $webPath
-    composer create-project laravel/laravel .
+    if [ "${GITHUB}" != "" ]
+     then
+        cd $webPath
+        git init
+        git remote add origin ${GITHUB}
+        git pull origin master
+    else
+        rm -rf $webPath
+        mkdir $webPath
+        composer create-project laravel/laravel .
+    fi
+else
+    if [ "${GITHUB}" != "" ]
+     then
+        git init
+        git remote add origin ${GITHUB}
+        git pull origin master
+    fi
 fi
 
 composer install
-
 php artisan key:generate
 php artisan config:cache
 

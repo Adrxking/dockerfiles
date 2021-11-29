@@ -1,5 +1,7 @@
 FROM adrxking_centos-php-composer
 
+ARG GITHUB
+
 # Copiar script de inicio al root
 COPY ./start-laravel.sh /root
 
