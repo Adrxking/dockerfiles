@@ -3,6 +3,7 @@ FROM adrxking_centos
 # Copiar el script de inicio al contenedor
 COPY ./start-mysql.sh /root
 COPY ./mysql-server.cnf /etc/my.cnf.d/mysql-server.cnf
+COPY ./script.exp /root
 
 # Dar permisos al script de inicio
 RUN chmod +x /root/start-mysql.sh

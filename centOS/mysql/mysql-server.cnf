@@ -2,9 +2,9 @@
 #
 # Si MySQL o MariaDB no puede comenzar (o reiniciar), entonces prueba lo siguiente.
 #
-# 1. Si el server tenía la configuración de la BD por defecto y has añadido o actualizado cualquier
+# 1. Si el server tenia la configuracion de la BD por defecto y has añadido o actualizado cualquier
 #    "innodb_log_*", entonces debes ejecutar estos comandos solamente
-#    la primera vez que aplicas esta configuración:
+#    la primera vez que aplicas esta configuracion:
 #
 #    $ rm -rvf /var/lib/mysql/ib_logfile*
 #    $ chown -R mysql:mysql /var/lib/mysql
@@ -31,7 +31,7 @@ port                            = 3306
 socket                          = /var/run/mysqld/mysqld.sock
 
 [mysqld]
-# === Configuración obligatoria ===
+# === Configuracion obligatoria ===
 basedir                         = /usr
 bind_address                    = 0.0.0.0 # Cambiar a 127.0.0.1 si no queremos conexiones remotas
 datadir                         = /var/lib/mysql
@@ -45,7 +45,7 @@ socket                          = /var/run/mysqld/mysqld.sock
 tmpdir                          = /tmp
 user                            = mysql
 
-# === Configuración InnoDB ===
+# === Configuracion InnoDB ===
 default_storage_engine          = InnoDB
 innodb_buffer_pool_instances    = 4     # Usar 1 instancia por cada 1GB de tamaño de la pool de InnoDB - maximo es 64
 innodb_buffer_pool_size         = 4G    # Usar mas del 70-80% of RAM
@@ -63,10 +63,10 @@ innodb_stats_on_metadata        = 0
                                         # la carga máxima producida por MySQL/MariaDB.
 innodb_read_io_threads          = 64
 innodb_write_io_threads         = 64
-#innodb_io_capacity             = 2000  # Depende de la tecnología de almacenamiento - usar 2000 for SSD, o más para NVMe
+#innodb_io_capacity             = 2000  # Depende de la tecnologia de almacenamiento - usar 2000 for SSD, o más para NVMe
 #innodb_io_capacity_max         = 4000  # Generalmente usar el doble de innodb_io_capacity
 
-# === Configuración MyISAM ===
+# === Configuracion MyISAM ===
 # Las siguientes 3 opciones son solo soportadas por MariaDB y MySQL 5.7 o +
 # No descomentar en MySQL 8.x+
 #query_cache_limit              = 4M    # UPD
@@ -78,7 +78,7 @@ key_buffer_size                 = 24M   # UPD
 low_priority_updates            = 1
 concurrent_insert               = 2
 
-# === Configuración de Conexión ===
+# === Configuracion de Conexion ===
 max_connections                 = 100   # UPD - Importante: Alto num de conexiones = alto consumo de RAM
 
 back_log                        = 512
@@ -89,30 +89,30 @@ interactive_timeout             = 180
 wait_timeout                    = 180
 
 # Solamente MySQL 5.7+ (desativado por defecto)
-#max_execution_time             = 90000  # Poner tiempo de espera límite a declaraciones SELECT (valor en milisegundos).
-                                        # Esta opción podría ser útil para grandes cantidades de consultas,
-                                        # pero podría causar errores (ej. con backups). Usar con extrema precaución y testear.
+#max_execution_time             = 90000  # Poner tiempo de espera limite a declaraciones SELECT (valor en milisegundos).
+                                        # Esta opcion podria ser útil para grandes cantidades de consultas,
+                                        # pero podria causar errores (ej. con backups). Usar con extrema precaucion y testear.
 
 # Solamente MariaDB 10.1.1+ (desativado por defecto)
 #max_statement_time             = 90    # El equivalente a "max_execution_time" en MySQL 5.7+
                                         # la variable es de tipo double, por lo tanto puedes usar subsegundo de timeout.
                                         # Ej. puedes usar el valor 0.01 para 10 milisegundos de timeout.
 
-# === Configuración del Buffer ===
+# === Configuracion del Buffer ===
 innodb_sort_buffer_size         = 2M    # UPD
 join_buffer_size                = 4M    # UPD
 read_buffer_size                = 3M    # UPD
 read_rnd_buffer_size            = 4M    # UPD
 sort_buffer_size                = 4M    # UPD
 
-# === Configuración de Tablas ===
+# === Configuracion de Tablas ===
 # Para sistemas administrados por systemd como Ubuntu 16.04+ o CentOS 7+, necesitas llevar a cabo acciones extra para table_open_cache y open_files_limit
 # para ser anulados.
 table_definition_cache          = 40000 # UPD
 table_open_cache                = 40000 # UPD
-open_files_limit                = 60000 # UPD - Este valor puede ser desde 2x a 3x el table_open_cache o encuentra el límite
+open_files_limit                = 60000 # UPD - Este valor puede ser desde 2x a 3x el table_open_cache o encuentra el limite
                                         # de archivos abiertos del sistema generalmente en /etc/sysctl.conf y /etc/security/limits.conf
-                                        # En sistemas administrados por systemd este límite deben ser colocados también en:
+                                        # En sistemas administrados por systemd este limite deben ser colocados también en:
                                         # - /etc/systemd/system/mysql.service.d/override.conf (para MySQL 5.7+ en Ubuntu) o
                                         # - /etc/systemd/system/mysqld.service.d/override.conf (para MySQL 5.7+ en CentOS) o
                                         # - /etc/systemd/system/mariadb.service.d/override.conf (para MariaDB)
@@ -120,7 +120,7 @@ open_files_limit                = 60000 # UPD - Este valor puede ser desde 2x a 
                                         #
                                         # Para editar el archivo correcto ejecuta:
                                         # $ systemctl edit mysql (o mysqld o mariadb)
-                                        # y pon "LimitNOFILE=" a algo como 100000 o más (dependiendo de los límites de tu sistema para MySQL)
+                                        # y pon "LimitNOFILE=" a algo como 100000 o más (dependiendo de los limites de tu sistema para MySQL)
                                         # o usa "LimitNOFILE=infinity" para MariaDB solamente.
                                         # Finalmente combina los cambios con:
                                         # $ systemctl daemon-reload; systemctl restart mysql (o mysqld o mariadb)
@@ -128,22 +128,22 @@ open_files_limit                = 60000 # UPD - Este valor puede ser desde 2x a 
 max_heap_table_size             = 128M  # Incrementar a 256M o 512M si tienes muchas tablas temporales por pérdida de indices en JOINs
 tmp_table_size                  = 128M  # Usar el mismo valor que max_heap_table_size
 
-# === Configuración de Búsqueda ===
-ft_min_word_len                 = 3     # Longitud mínima de palabras para ser indexadas para resultados de búsqueda
+# === Configuracion de Busqueda ===
+ft_min_word_len                 = 3     # Longitud minima de palabras para ser indexadas para resultados de búsqueda
 
 # === Logs ===
 # Nota: Log binario está activado por defecto en MySQL 8+
 #       Desactivalo completamente o configuralo en los ajustes siguientes
 
 #skip_log_bin                           # Desactivar bin log
-#expire_logs_days               = 1     # Mantener logs por 1 día - Deprecado en MySQL 8+
-binlog_expire_logs_seconds     = 86400  # Mantener logs por 1 día - Use on MySQL 8+ only (!)
+#expire_logs_days               = 1     # Mantener logs por 1 dia - Deprecado en MySQL 8+
+binlog_expire_logs_seconds     = 86400  # Mantener logs por 1 dia - Usar en MySQL 8+ (!)
 
 log_error                       = /var/lib/mysql/mysql_error.log
 
-log_queries_not_using_indexes   = 0     # Desactivado en producción
+log_queries_not_using_indexes   = 0     # Desactivado en produccion
 long_query_time                 = 5
-slow_query_log                  = 0     # Desactivado en producción
+slow_query_log                  = 0     # Desactivado en produccion
 slow_query_log_file             = /var/lib/mysql/mysql_slow.log
 
 [mysqldump]
