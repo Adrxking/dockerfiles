@@ -6,9 +6,3 @@ Variables de entorno necesarias:
 
  -- PARA EL TIMEZONE --
 --> TZ
-
- -- SI ES UNA WEB NUEVA ESPECIFICAR CON TRUE --
---> NEW
-
- -- SI SOLO VAMOS A UTILIZAR NODE ESPECIFICAR CON TRUE --
---> JUSTNODE
