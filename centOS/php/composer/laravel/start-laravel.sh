@@ -30,8 +30,11 @@ if ! [ -f $webPath/composer.json ]
 else
     if [ "${GITHUB}" != "" ]
      then
-        git init
-        git remote add origin ${GITHUB}
+        if ! [ -f .git ]
+         then
+            git init
+            git remote add origin ${GITHUB}
+        fi
         git pull origin master
     fi
 fi
