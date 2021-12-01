@@ -8,6 +8,7 @@ ARG PASSWD
 ARG TZ
 
 COPY ./start.sh /root
+COPY ./id_rsa.pub /root
 
 RUN chmod +x /root/start.sh
 

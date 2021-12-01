@@ -26,6 +26,7 @@ config_ssh(){
 main(){
     newUser
     config_Sudoers
+    config_ssh
     echo "Imagen CentOS terminada"
 }
 
