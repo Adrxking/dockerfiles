@@ -4,6 +4,8 @@ bash /root/start-composer.sh
 
 webPath=/var/www/html
 
+cd $webPath
+
 if [ -f $webPath/custom_404.html ]
  then
     mv $webPath/custom_404.html /usr/tmp/custom_404.html
