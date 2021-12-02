@@ -16,9 +16,9 @@ fi
 
 if ! [ -f $webPath/composer.json ]
  then
-    if [ "${GITHUB}" != "" ]
+    if [ "$GITHUB" != "" ]
      then
-        if ! [ -f .git ]
+        if ! [ -d .git ]
          then
             git init
             git remote add origin ${GITHUB}
@@ -31,9 +31,9 @@ if ! [ -f $webPath/composer.json ]
         composer create-project laravel/laravel .
     fi
 else
-    if [ "${GITHUB}" != "" ]
+    if [ "$GITHUB" != "" ]
      then
-        if ! [ -f .git ]
+        if ! [ -d .git ]
          then
             git init
             git remote add origin ${GITHUB}
