@@ -6,7 +6,26 @@ set -e
 
 webPath=/var/www/html
 
-sed -i "s/fastcgi_pass   container:9000/fastcgi_pass   ${FPM}:9000/" /etc/nginx/conf.d/default.conf
+if [ "$FPM" != '' ]
+ then
+    sed -i "s/fastcgi_pass   container:9000/fastcgi_pass   ${FPM}:9000/" /etc/nginx/conf.d/default.conf
+fi
+
+if [ "$GITHUB" != "" ]
+ then
+    cd $webPath
+    if ! [ -d .git ]
+     then
+        git init
+        git remote add origin https://${GITHUB_USER}:${GITHUB_PASSWD}@github.com/Adrxking/${GITHUB}
+        if [ "$DIST" == true ]
+         then
+            git config core.sparseCheckout true
+            echo "${GITHUB}/dist" >> .git/info/sparse-checkout
+        fi
+    fi
+    git pull origin master
+fi
 
 if [ "$CUSTOMPATH" == true ]
  then

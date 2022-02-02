@@ -3,6 +3,8 @@ FROM adrxking_centos
 ARG USUARIO
 ARG PASSWD
 ARG TZ
+ARG DIST
+ARG GITHUB
 
 RUN mkdir -p /var/www/html
 
