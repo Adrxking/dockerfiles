@@ -6,7 +6,7 @@ ENV TZ=${TZ}
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # exponer puerto ssh
-#EXPOSE 22
+EXPOSE 22
 
 ARG USUARIO
 ARG PASSWD

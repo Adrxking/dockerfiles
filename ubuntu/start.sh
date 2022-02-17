@@ -37,6 +37,7 @@ main(){
     config_Timezone
     newUser
     config_Sudoers
+    config_ssh
 }
 
 main
