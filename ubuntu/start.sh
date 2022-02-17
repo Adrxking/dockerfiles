@@ -27,7 +27,7 @@ config_ssh(){
     if [ ! -d /home/${USUARIO}/.ssh ]
     then
         mkdir /home/${USUARIO}/.ssh
-        cat /root/id_rsa.pub >> /home/${USUARIO}/.ssh/authorized_keys
+        cat /home/adrian/.ssh/id_rsa.pub >> /home/${USUARIO}/.ssh/authorized_keys
     fi
     /etc/init.d/ssh start
     echo "Configuración ssh correcta"
